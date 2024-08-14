@@ -22,9 +22,9 @@
                 <configuration>
                     <cpp>
                         <options>
+                            <option>-std=c++11</option> 
                             <option>-c</option>
                             <option>-fPIC</option>
-
                             <option>-I${JAVA_HOME}/include</option>
                             <option>-I${JAVA_HOME}/include/linux</option>
                             <option>-fexceptions</option>
