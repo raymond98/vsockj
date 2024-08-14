@@ -1,13 +1,12 @@
 #include <iostream>
 #include <cstring>
-#include <stdio.h>
-
+#include <cstdio>      
+#include <cstdlib>     
 #include <sys/socket.h>
 #include <sys/ioctl.h>
 #include <linux/vm_sockets.h>
 #include <unistd.h>
 #include <errno.h>
-
 #include <jni.h>
 #include <solutions_cloudarchitects_vsockj_VSockImpl.h>
 
@@ -248,9 +247,9 @@ JNIEXPORT void JNICALL Java_solutions_cloudarchitects_vsockj_VSockImpl_accept
         return;
     }
 
-	struct sockaddr_vm peer_addr; // TODO: set in socket
-	socklen_t peer_addr_size = sizeof(struct sockaddr_vm);
-	int peer_fd = accept(s, (struct sockaddr *) &peer_addr, &peer_addr_size);
+    struct sockaddr_vm peer_addr; // TODO: set in socket
+    socklen_t peer_addr_size = sizeof(struct sockaddr_vm);
+    int peer_fd = accept(s, (struct sockaddr *) &peer_addr, &peer_addr_size);
 
     if (peer_fd == -1) {
         if (errno == EAGAIN) {
@@ -262,7 +261,7 @@ JNIEXPORT void JNICALL Java_solutions_cloudarchitects_vsockj_VSockImpl_accept
         return;
     }
 
-	env->SetIntField(connectionVSock, fdField, peer_fd);
+    env->SetIntField(connectionVSock, fdField, peer_fd);
 }
 
 JNIEXPORT jint JNICALL Java_solutions_cloudarchitects_vsockj_VSockImpl_getLocalCid
