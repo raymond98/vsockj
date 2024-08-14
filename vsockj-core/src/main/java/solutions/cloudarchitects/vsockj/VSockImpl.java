@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.net.SocketException;
 
 public final class VSockImpl {
-    static {
-        System.loadLibrary("vsockj-native-" + VSockJ.VERSION);
-    }
+    
+    /*static {
+        System.loadLibrary("vsockj-native-" + VSockJ.VERSION); //No longer necessary with a .jar native lib
+    }*/
 
     int fd = -1;
 
