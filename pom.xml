@@ -20,7 +20,6 @@
     </properties>
 
     <build>
-        <pluginManagement>
             <plugins>
                 <plugin>
                     <artifactId>maven-clean-plugin</artifactId>
@@ -58,7 +57,14 @@
                                  <narSystemPackage>solutions.cloudarchitects.vsockj</narSystemPackage>
                              </library>
                          </libraries>
-                         <outputDirectory>${project.build.directory}</outputDirectory>
+                         <cpp>
+                             <options>
+                                 <option>-std=c++11</option> 
+                                 <option>-fPIC</option> 
+                                 <option>-I${JAVA_HOME}/include</option> 
+                                 <option>-I${JAVA_HOME}/include/linux</option>
+                             </options>
+                         </cpp>
                          <linker>
                              <options>
                                  <option>-shared</option>
@@ -70,13 +76,17 @@
                              <goals>
                                  <goal>nar-prepare-package</goal>
                                  <goal>nar-package</goal>
-                                 <goal>nar-install</goal>
-                                 <goal>nar-deploy</goal>
                              </goals>
                          </execution>
                      </executions>
                 </plugin>
+                <plugin>
+                     <artifactId>maven-deploy-plugin</artifactId>
+                     <version>2.8.2</version>
+                     <configuration>
+                         <skipDeploy>false</skipDeploy> 
+                     </configuration>
+                 </plugin>
             </plugins>
-        </pluginManagement>
     </build>
 </project>
