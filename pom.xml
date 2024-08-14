@@ -48,12 +48,33 @@
                 </plugin>
                 <plugin>
                     <groupId>com.github.maven-nar</groupId>
-                    <artifactId>nar-maven-plugin</artifactId>
-                    <version>3.5.1</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <!-- Configuration for NAR plugin will go here -->
-                    </configuration>
+                     <artifactId>nar-maven-plugin</artifactId>
+                     <version>3.5.1</version>
+                     <extensions>true</extensions>
+                     <configuration>
+                         <libraries>
+                             <library>
+                                 <type>jni</type>
+                                 <narSystemPackage>solutions.cloudarchitects.vsockj</narSystemPackage>
+                             </library>
+                         </libraries>
+                         <outputDirectory>${project.build.directory}</outputDirectory>
+                         <linker>
+                             <options>
+                                 <option>-shared</option>
+                             </options>
+                         </linker>
+                     </configuration>
+                     <executions>
+                         <execution>
+                             <goals>
+                                 <goal>nar-prepare-package</goal>
+                                 <goal>nar-package</goal>
+                                 <goal>nar-install</goal>
+                                 <goal>nar-deploy</goal>
+                             </goals>
+                         </execution>
+                     </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
